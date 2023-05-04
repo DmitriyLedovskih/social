@@ -39,5 +39,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitriyLedovskih/social.git"
+  },
+  "author": "Dmitriy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmitriyLedovskih/social/issues"
+  },
+  "homepage": "https://github.com/DmitriyLedovskih/social#readme"
 }
