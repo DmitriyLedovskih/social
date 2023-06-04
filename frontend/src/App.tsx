@@ -5,34 +5,18 @@ import Register from './pages/Register';
 import ProctectedRouteElement from './components/ProctectedRouteElement';
 import Feed from './pages/Feed';
 import React from 'react';
-import { selectUsers, setLoggedIn, setValue } from './redux/slices/usersSlice';
+import { getMe, selectUsers } from './redux/slices/usersSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import LeftSidebar from './components/LeftSidebar';
+import Profile from './pages/Profile';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const { loggedIn } = useSelector(selectUsers);
   React.useEffect(() => {
-    try {
-      const checkToken = async () => {
-        const res = await fetch('http://localhost:3001/users/me', {
-          method: 'GET',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        if (res.ok) {
-          const data = await res.json();
-          dispatch(setLoggedIn(true));
-          dispatch(setValue(data));
-        }
-      };
-
-      checkToken();
-    } catch (error) {
-      console.log(error);
-    }
+    // НА ВРЕМЯ
+    // @ts-ignore
+    dispatch(getMe());
   }, []);
 
   return (
@@ -45,6 +29,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Login />} />
             <Route path="/sign-up" element={<Register />} />
             <Route path="/feed" element={<ProctectedRouteElement element={Feed} />} />
+            <Route path="/profile/:userId" element={<ProctectedRouteElement element={Profile} />} />
           </Routes>
         </div>
       </div>

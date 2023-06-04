@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../components/Card';
+import AddCard from '../components/AddCard';
 
 type FeedCard = {
   _id: number;
@@ -33,7 +34,10 @@ const Feed: React.FC = () => {
   }, []);
   return (
     <main className="feed">
-      {cards ? cards.map((card: FeedCard) => <Card {...card} key={card._id} />) : 'loading'}
+      <AddCard />
+      <section className="cards">
+        {cards ? cards.map((card: FeedCard) => <Card {...card} key={card._id} />) : 'loading'}
+      </section>
     </main>
   );
 };

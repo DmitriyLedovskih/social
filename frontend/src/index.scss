@@ -4,7 +4,7 @@ body {
   margin: 0;
   background-color: #edeef0;
   font-family: 'Inter', sans-serif;
-  min-height: 200vh;
+  min-height: 100vh;
 }
 
 .App {
@@ -76,9 +76,14 @@ body {
     &_outline {
       border-color: #000;
       background-color: transparent;
+      color: #000;
 
       &:hover {
         background-color: #000;
+        color: #fff;
+        .button__icon {
+          fill: #fff;
+        }
       }
     }
   }
@@ -88,7 +93,7 @@ body {
   min-height: 50px;
   display: flex;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   position: sticky;
   top: 0;
   background-color: #fff;
@@ -288,7 +293,7 @@ body {
   }
 }
 
-.feed {
+.content {
   width: 60%;
 }
 
@@ -419,12 +424,6 @@ body {
       height: 25px;
       transition: all .4s ease-in-out;
     }
-
-    &:hover {
-      .card__button-icon {
-        fill: #fff;
-      }
-    }
   }
 
   &__view {
@@ -459,5 +458,197 @@ body {
     font-size: 16px;
     line-height: 18px;
     padding: 5px;
+    display: flex;
+    gap: 5px;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.profile {
+  width: 100%;
+  &__header {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+
+    &-block {
+      text-align: center;
+    }
+    &-avatar {
+      width: 260px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    &-name {
+      margin: 15px 0 10px;
+      font-size: 24px;
+      line-height: 26px;
+    }
+    &-descr {
+      margin: 0;
+      font-size: 16px;
+      line-height: 18px;
+    }
+    &-button {
+      padding: 10px;
+      width: 100%;
+      justify-content: center;
+      font-size: 14px;
+      line-height: 16px;
+      margin-top: 10px;
+    }
+    &-noInfo {
+      text-align: center;
+      font-size: 16px;
+      line-height: 18px;
+    }
+    &-photos {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    &-title {
+      margin: 0 0 10px;
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+    &-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    &-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    &-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 10px;
+      height: 400px;
+      overflow: hidden;
+    }
+    &-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    &-text {
+      font-size: 16px;
+      line-height: 18px;
+      color: #222;
+      margin: 0;
+    }
+    &-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    &-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 5px;
+      font-size: 14px;
+      line-height: 16px;
+    }
+    &-label {
+      width: 170px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    &-text {
+      font-weight: 400;
+      color: #222;
+    }
+    &-link {
+      color: #0a6e0a;
+    }
+  }
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.add-card {
+  position: relative;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 30px;
+  &__textarea {
+    outline: none;
+    font-size: 21px;
+    line-height: 24px;
+    color: #222;
+    max-height: 350px;
+    min-height: 100px;
+    width: 100%;
+    resize: none;
+    background-color: transparent;
+    border: none;
+    font-family: inherit;
+    padding: 0;
+  }
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding-top: 5px;
+    border-top: 1px solid #ccc;
+    position: relative;
+    &-input {
+      position: absolute;
+      left: 30px;
+      top: 2px;
+      width: 40%;
+      height: 100%;
+      z-index: 2;
+      background-color: transparent;
+      border: 1px solid #222;
+      opacity: 0;
+      transform: translateX(-100%);
+      visibility: hidden;
+      transition: all .4s ease-in-out;
+      &_active {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    &-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    &-icon {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  &__button {
+    padding: 5px;
+    font-size: 16px;
+    line-height: 18px;
   }
 }

@@ -1,38 +1,26 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { selectUsers, setLoggedIn, setValue } from '../redux/slices/usersSlice';
+import { auth } from '../redux/slices/usersSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const LoginForm: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { userData } = useSelector(selectUsers);
+  const [userData, setUserData] = React.useState({
+    email: '',
+    password: '',
+  });
   function handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = evt.target;
-    dispatch(setValue({ ...userData, [name]: value }));
+    setUserData({ ...userData, [name]: value });
   }
   const loginFetch = (evt: React.ChangeEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    fetch('http://localhost:3001/signin', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    })
-      .then((res) => {
-        if (res.ok) {
-          dispatch(setLoggedIn(true));
-          navigate('/feed');
-
-          return res.json();
-        }
-        return Promise.reject(res.status);
-      })
-      .then((data) => dispatch(setValue(data.data)))
-      .catch((err) => console.log(err));
+    // @ts-ignore
+    dispatch(auth({ userData, url: 'signin' }));
+    navigate('/feed');
   };
+
   return (
     <div className="form-block element">
       <h2 className="form-block__title">Вход</h2>
@@ -43,6 +31,7 @@ const LoginForm: React.FC = () => {
             className="form-block__input"
             name="email"
             placeholder=" "
+            value={userData.email}
             onChange={handleChange}
           />
           <span className="form-block__text">Почта</span>
@@ -53,6 +42,7 @@ const LoginForm: React.FC = () => {
             className="form-block__input"
             name="password"
             placeholder=" "
+            value={userData.password}
             onChange={handleChange}
           />
           <span className="form-block__text">Пароль</span>
